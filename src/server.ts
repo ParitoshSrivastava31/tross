@@ -13,6 +13,7 @@ import { profileRoutes } from './routes/profile.routes.js';
 import { batchRoutes } from './routes/batch.routes.js';
 import { healthRoutes } from './routes/health.routes.js';
 import { AppError, isAppError } from './core/errors.js';
+import { SWAGGER_CUSTOM_CSS, SWAGGER_CUSTOM_JS } from './config/swagger-theme.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -88,6 +89,27 @@ export async function buildServer(): Promise<FastifyInstance> {
     uiConfig: {
       docExpansion: 'list',
       deepLinking: true,
+      displayRequestDuration: true,
+      filter: true,
+      syntaxHighlight: {
+        activate: true,
+        theme: 'tomorrow-night',
+      },
+    },
+    theme: {
+      title: 'LinkedIn Profile API — OpenAPI Specs & Playground',
+      css: [
+        {
+          filename: 'custom-swagger.css',
+          content: SWAGGER_CUSTOM_CSS,
+        },
+      ],
+      js: [
+        {
+          filename: 'custom-swagger.js',
+          content: SWAGGER_CUSTOM_JS,
+        },
+      ],
     },
     staticCSP: true,
     transformStaticCSP: (header) => header,

@@ -107,4 +107,16 @@ describe('API Integration Tests', () => {
     expect(res.body).toContain('Satya Nadella');
     expect(res.body).toContain('Microsoft');
   });
+
+  it('GET /docs loads customized swagger documentation UI', async () => {
+    const res = await app.inject({
+      method: 'GET',
+      url: '/docs/',
+    });
+
+    expect(res.statusCode).toBe(200);
+    expect(res.headers['content-type']).toContain('text/html');
+    expect(res.body).toContain('custom-swagger.css');
+    expect(res.body).toContain('custom-swagger.js');
+  });
 });
