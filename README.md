@@ -11,6 +11,10 @@
 
 ---
 
+> [!NOTE]
+> **Pure Reverse-Engineered Solution (Zero Headless Browsers):**
+> This service directly queries LinkedIn's internal Rest.li/Voyager API endpoints over pure HTTP (`x-restli-protocol-version: 2.0.0`, `csrf-token`, session cookies). It does **NOT** use Puppeteer, Playwright, Selenium, or any browser automation.
+
 ## 🎯 Architecture & Approach
 
 This service reverse-engineers LinkedIn's internal web architecture to extract complete profile data reliably and safely.
