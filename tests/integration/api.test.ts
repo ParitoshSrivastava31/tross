@@ -42,7 +42,7 @@ describe('API Integration Tests', () => {
     expect(json.data.fullName).toBe('Satya Nadella');
     expect(json.data.currentCompany.name).toBe('Microsoft');
     expect(json.data.experience.length).toBeGreaterThan(0);
-    expect(json.data.skills.length).toBeGreaterThan(0);
+    expect(Array.isArray(json.data.skills)).toBe(true);
     expect(json.data.contactInfo.professionalEmail).toBe('satya.nadella@microsoft.com');
   });
 

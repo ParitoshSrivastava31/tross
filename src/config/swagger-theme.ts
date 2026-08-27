@@ -6,24 +6,29 @@ export const SWAGGER_CUSTOM_CSS = `
   --bg-surface: #ffffff;
   --bg-subtle: #f1f5f9;
   --border-hairline: #e2e8f0;
-  --border-hover: #cbd5e1;
+  --border-input: #cbd5e1;
+  --border-hover: #94a3b8;
   --text-title: #0f172a;
-  --text-body: #334155;
-  --text-muted: #64748b;
+  --text-body: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  --text-faint: #64748b;
   --apple-blue: #0071e3;
-  --apple-green: #10b981;
+  --apple-green: #059669;
   --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 }
 
+/* Page Canvas */
 html, body {
   margin: 0 !important;
   padding: 0 !important;
   font-family: var(--font-display) !important;
-  background-color: #f8fafc !important;
-  background: #f8fafc !important;
-  color: #334155 !important;
+  background-color: var(--bg-page) !important;
+  background: var(--bg-page) !important;
+  color: var(--text-body) !important;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-image: 
     radial-gradient(at 50% 0%, rgba(0, 113, 227, 0.03) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.02) 0px, transparent 50%) !important;
@@ -37,10 +42,10 @@ html, body {
 .swagger-ui .swagger-container {
   background-color: transparent !important;
   background: transparent !important;
-  color: #334155 !important;
+  color: var(--text-body) !important;
 }
 
-/* Custom Navigation Bar */
+/* Custom Sticky Navigation Bar */
 .tross-custom-nav {
   position: sticky;
   top: 0;
@@ -127,7 +132,7 @@ html, body {
 
 .tross-nav-btn:hover {
   background: var(--bg-subtle);
-  border-color: var(--border-hover);
+  border-color: var(--border-input);
   color: var(--text-title);
   transform: translateY(-1px);
 }
@@ -190,14 +195,14 @@ html, body {
   max-width: 100% !important;
 }
 
-/* Info Section Header */
+/* Info Section Header Card */
 .swagger-ui .info {
-  margin: 0 0 32px 0 !important;
+  margin: 0 0 28px 0 !important;
   padding: 32px !important;
   background: #ffffff !important;
   border-radius: 16px !important;
   border: 1px solid var(--border-hairline) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
 }
 
 .swagger-ui .info .title {
@@ -210,31 +215,37 @@ html, body {
   align-items: center !important;
   gap: 12px !important;
   flex-wrap: wrap !important;
+  margin-bottom: 8px !important;
 }
 
-.swagger-ui .info .title small {
-  background: rgba(0, 113, 227, 0.08) !important;
+/* Remove 1.0.0 and OAS 3.0 badges completely */
+.swagger-ui .info .title small,
+.swagger-ui .info .title .version-stamp,
+.swagger-ui .info .title .version-pragma,
+.swagger-ui .info .title .version,
+.swagger-ui .info .title pre,
+.swagger-ui .info .version-pragma {
+  display: none !important;
+}
+
+.swagger-ui .info .base-url,
+.swagger-ui .info a.nostyle {
+  font-family: var(--font-mono) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
   color: var(--apple-blue) !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  padding: 3px 10px !important;
-  border-radius: 9999px !important;
-  border: 1px solid rgba(0, 113, 227, 0.2) !important;
-  top: 0 !important;
-}
-
-.swagger-ui .info .title small.version-stamp {
-  background: #0f172a !important;
-  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .swagger-ui .info p,
-.swagger-ui .info .description {
+.swagger-ui .info .description,
+.swagger-ui .info .description p {
   font-family: var(--font-display) !important;
   font-size: 15px !important;
-  line-height: 1.6 !important;
-  color: var(--text-body) !important;
-  margin-top: 12px !important;
+  line-height: 1.65 !important;
+  color: var(--text-secondary) !important;
+  margin-top: 10px !important;
+  font-weight: 400 !important;
 }
 
 .swagger-ui .info a {
@@ -243,35 +254,36 @@ html, body {
   text-decoration: none !important;
 }
 
-.swagger-ui .info a:hover {
-  text-decoration: underline !important;
-}
-
-/* Scheme / Server Selector */
+/* Scheme & Server Selector Card */
 .swagger-ui .scheme-container {
   background: #ffffff !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
   border: 1px solid var(--border-hairline) !important;
   border-radius: 12px !important;
-  padding: 16px 20px !important;
+  padding: 16px 22px !important;
   margin-bottom: 24px !important;
 }
 
 .swagger-ui .servers-title {
   font-family: var(--font-display) !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
-  color: var(--text-title) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--text-faint) !important;
+  margin-bottom: 8px !important;
 }
 
 .swagger-ui .servers > label select {
   font-family: var(--font-mono) !important;
   font-size: 13px !important;
-  border: 1px solid var(--border-hairline) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--border-input) !important;
   border-radius: 8px !important;
-  padding: 6px 12px !important;
+  padding: 8px 14px !important;
   background-color: var(--bg-subtle) !important;
   color: var(--text-title) !important;
+  cursor: pointer !important;
 }
 
 /* Filter Input Box */
@@ -280,40 +292,51 @@ html, body {
   padding: 0 !important;
 }
 
-.swagger-ui .filter-container input {
+.swagger-ui .filter-container input,
+.swagger-ui .filter-container .operation-filter-input {
   font-family: var(--font-display) !important;
   font-size: 14px !important;
-  border: 1px solid var(--border-hairline) !important;
+  font-weight: 500 !important;
+  border: 1.5px solid var(--border-input) !important;
   border-radius: 10px !important;
   padding: 10px 16px !important;
   background: #ffffff !important;
   color: var(--text-title) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.15s ease !important;
   width: 100% !important;
-  max-width: 400px !important;
+  max-width: 440px !important;
 }
 
-.swagger-ui .filter-container input:focus {
+.swagger-ui .filter-container input::placeholder,
+.swagger-ui .filter-container .operation-filter-input::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+.swagger-ui .filter-container input:focus,
+.swagger-ui .filter-container .operation-filter-input:focus {
   border-color: var(--apple-blue) !important;
-  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12) !important;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15) !important;
   outline: none !important;
 }
 
-/* Tag Sections */
+/* Tag Sections (Profile, Batch Scraper, Health) */
 .swagger-ui .opblock-tag-section {
-  margin-bottom: 28px !important;
+  margin-bottom: 32px !important;
 }
 
 .swagger-ui .opblock-tag {
   font-family: var(--font-display) !important;
-  font-size: 18px !important;
-  font-weight: 700 !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
   letter-spacing: -0.02em !important;
   color: var(--text-title) !important;
-  border-bottom: 1px solid var(--border-hairline) !important;
-  padding: 12px 0 !important;
-  margin-bottom: 14px !important;
+  border-bottom: 2px solid var(--border-hairline) !important;
+  padding: 14px 0 !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .swagger-ui .opblock-tag:hover {
@@ -322,20 +345,20 @@ html, body {
 
 .swagger-ui .opblock-tag small {
   font-family: var(--font-display) !important;
-  font-size: 13px !important;
-  font-weight: 400 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
   color: var(--text-muted) !important;
-  margin-left: 10px !important;
+  margin-left: 14px !important;
 }
 
 .swagger-ui .opblock-tag svg {
   fill: var(--text-title) !important;
 }
 
-/* Opblocks (Endpoints) */
+/* Endpoint Cards (.opblock) */
 .swagger-ui .opblock {
   border-radius: 12px !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03) !important;
   border: 1px solid var(--border-hairline) !important;
   background: #ffffff !important;
   margin: 0 0 14px 0 !important;
@@ -344,12 +367,12 @@ html, body {
 }
 
 .swagger-ui .opblock:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04) !important;
-  border-color: var(--border-hover) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05) !important;
+  border-color: var(--border-input) !important;
 }
 
 .swagger-ui .opblock .opblock-summary {
-  padding: 12px 18px !important;
+  padding: 14px 20px !important;
   display: flex !important;
   align-items: center !important;
   background: #ffffff !important;
@@ -359,53 +382,53 @@ html, body {
 .swagger-ui .opblock .opblock-summary-method {
   font-family: var(--font-mono) !important;
   font-size: 12px !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
   border-radius: 6px !important;
-  padding: 5px 12px !important;
-  min-width: 68px !important;
+  padding: 5px 14px !important;
+  min-width: 72px !important;
   text-align: center !important;
-  letter-spacing: 0.03em !important;
+  letter-spacing: 0.04em !important;
   text-shadow: none !important;
 }
 
 /* Method Variants */
 .swagger-ui .opblock.opblock-get {
   background: #ffffff !important;
-  border-color: rgba(16, 185, 129, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
 }
 .swagger-ui .opblock.opblock-get .opblock-summary-method {
   background: #ecfdf5 !important;
   color: #059669 !important;
-  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
 }
 .swagger-ui .opblock.opblock-get .opblock-summary {
-  border-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
 }
 
 .swagger-ui .opblock.opblock-post {
   background: #ffffff !important;
-  border-color: rgba(37, 99, 235, 0.25) !important;
+  border-color: rgba(37, 99, 235, 0.35) !important;
 }
 .swagger-ui .opblock.opblock-post .opblock-summary-method {
   background: #eff6ff !important;
   color: #2563eb !important;
-  border: 1px solid rgba(37, 99, 235, 0.3) !important;
+  border: 1px solid rgba(37, 99, 235, 0.35) !important;
 }
 .swagger-ui .opblock.opblock-post .opblock-summary {
-  border-color: rgba(37, 99, 235, 0.15) !important;
+  border-color: rgba(37, 99, 235, 0.2) !important;
 }
 
 .swagger-ui .opblock.opblock-delete .opblock-summary-method {
   background: #fef2f2 !important;
   color: #e11d48 !important;
-  border: 1px solid rgba(225, 29, 72, 0.3) !important;
+  border: 1px solid rgba(225, 29, 72, 0.35) !important;
 }
 
-/* Path & Description */
+/* Endpoint Path & Description */
 .swagger-ui .opblock .opblock-summary-path {
   font-family: var(--font-mono) !important;
   font-size: 14px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   color: var(--text-title) !important;
   text-decoration: none !important;
 }
@@ -416,24 +439,46 @@ html, body {
 
 .swagger-ui .opblock .opblock-summary-description {
   font-family: var(--font-display) !important;
-  font-size: 13px !important;
+  font-size: 13.5px !important;
   color: var(--text-muted) !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 
-/* Opblock Body (Expanded Details) */
+/* Opblock Body (Expanded Endpoint View) */
 .swagger-ui .opblock-body {
   background: #ffffff !important;
-  border-top: 1px solid var(--bg-subtle) !important;
-  padding: 20px !important;
+  border-top: 1px solid var(--border-hairline) !important;
+  padding: 24px !important;
 }
 
+.swagger-ui .opblock-description-wrapper,
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock-title_normal p {
+  font-family: var(--font-display) !important;
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+  margin: 4px 0 16px 0 !important;
+}
+
+/* Parameters Section Header (Cleaned up and blue bar removed) */
 .swagger-ui .opblock-section-header {
   background: var(--bg-subtle) !important;
+  border: 1px solid var(--border-hairline) !important;
   border-radius: 8px !important;
-  padding: 8px 14px !important;
+  padding: 10px 16px !important;
   box-shadow: none !important;
   min-height: auto !important;
+  margin-bottom: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.swagger-ui .opblock-section-header:before,
+.swagger-ui .opblock-section-header:after {
+  display: none !important;
 }
 
 .swagger-ui .opblock-section-header h4 {
@@ -441,12 +486,14 @@ html, body {
   font-size: 13px !important;
   font-weight: 700 !important;
   color: var(--text-title) !important;
+  margin: 0 !important;
+  letter-spacing: -0.01em !important;
 }
 
 /* Parameters Table */
 .swagger-ui .parameters-container {
   padding: 0 !important;
-  margin-top: 14px !important;
+  margin-top: 10px !important;
 }
 
 .swagger-ui table.parameters {
@@ -454,62 +501,85 @@ html, body {
 }
 
 .swagger-ui table.parameters thead th {
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
   color: var(--text-muted) !important;
-  border-bottom: 1px solid var(--border-hairline) !important;
-  padding: 10px 8px !important;
+  border-bottom: 2px solid var(--border-hairline) !important;
+  padding: 12px 8px !important;
 }
 
 .swagger-ui .parameter__name {
   font-family: var(--font-mono) !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
   color: var(--text-title) !important;
+}
+
+.swagger-ui .parameter__name.required:after {
+  color: #ef4444 !important;
+  font-weight: 800 !important;
 }
 
 .swagger-ui .parameter__type {
   font-family: var(--font-mono) !important;
-  font-size: 11px !important;
-  color: var(--text-muted) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--text-faint) !important;
 }
 
 .swagger-ui .parameter__in {
-  font-size: 11px !important;
+  font-size: 12px !important;
   color: var(--apple-blue) !important;
   font-weight: 600 !important;
 }
 
-/* Inputs & Form Fields */
+.swagger-ui .parameter__description,
+.swagger-ui .parameter__description p,
+.swagger-ui .parameter__description p.markdown {
+  font-family: var(--font-display) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: var(--text-body) !important;
+  line-height: 1.5 !important;
+}
+
+/* Form Inputs & Textareas */
 .swagger-ui input[type="text"],
 .swagger-ui textarea,
 .swagger-ui select {
   font-family: var(--font-mono) !important;
   font-size: 13px !important;
-  border: 1px solid var(--border-hairline) !important;
+  font-weight: 500 !important;
+  border: 1.5px solid var(--border-input) !important;
   border-radius: 8px !important;
-  padding: 8px 12px !important;
+  padding: 9px 12px !important;
   background: #ffffff !important;
   color: var(--text-title) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.15s ease !important;
+}
+
+.swagger-ui input[type="text"]::placeholder,
+.swagger-ui textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
 }
 
 .swagger-ui input[type="text"]:focus,
 .swagger-ui textarea:focus,
 .swagger-ui select:focus {
   border-color: var(--apple-blue) !important;
-  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12) !important;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15) !important;
   outline: none !important;
 }
 
-/* Buttons */
+/* Action Buttons */
 .swagger-ui .btn {
   font-family: var(--font-display) !important;
   border-radius: 8px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   font-size: 13px !important;
   box-shadow: none !important;
   transition: all 0.15s ease !important;
@@ -517,21 +587,23 @@ html, body {
 
 .swagger-ui .btn.try-out__btn {
   background: var(--bg-subtle) !important;
-  border: 1px solid var(--border-hairline) !important;
+  border: 1px solid var(--border-input) !important;
   color: var(--text-title) !important;
-  padding: 6px 14px !important;
+  padding: 6px 16px !important;
+  font-size: 12px !important;
 }
 
 .swagger-ui .btn.try-out__btn:hover {
   background: #e2e8f0 !important;
   border-color: var(--border-hover) !important;
+  color: var(--text-title) !important;
 }
 
 .swagger-ui .btn.execute {
   background: #0f172a !important;
   color: #ffffff !important;
   border: none !important;
-  padding: 8px 24px !important;
+  padding: 10px 28px !important;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25) !important;
 }
 
@@ -541,24 +613,26 @@ html, body {
 }
 
 .swagger-ui .btn.btn-clear {
-  background: transparent !important;
-  border: 1px solid var(--border-hairline) !important;
+  background: #ffffff !important;
+  border: 1px solid var(--border-input) !important;
   color: var(--text-muted) !important;
+  padding: 8px 18px !important;
 }
 
 .swagger-ui .btn.cancel {
   background: rgba(239, 68, 68, 0.08) !important;
-  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
   color: #ef4444 !important;
+  padding: 8px 18px !important;
 }
 
-/* Code Snippets & Response Boxes (Dark Slate High-Precision) */
+/* High-Contrast Code Boxes & Response Viewers */
 .swagger-ui .highlight-code,
 .swagger-ui pre.microlight,
 .swagger-ui .curl-command,
 .swagger-ui .responses-inner pre {
   background: #0f172a !important;
-  color: #f1f5f9 !important;
+  color: #f8fafc !important;
   border-radius: 10px !important;
   border: 1px solid #1e293b !important;
   font-family: var(--font-mono) !important;
@@ -570,31 +644,35 @@ html, body {
 .swagger-ui .highlight-code code,
 .swagger-ui pre.microlight code {
   font-family: var(--font-mono) !important;
-  color: #f1f5f9 !important;
+  color: #f8fafc !important;
 }
 
-/* Responses Section */
+/* Responses Table */
 .swagger-ui .responses-table {
   font-family: var(--font-display) !important;
 }
 
 .swagger-ui .responses-table thead th {
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
   color: var(--text-muted) !important;
-  border-bottom: 1px solid var(--border-hairline) !important;
+  border-bottom: 2px solid var(--border-hairline) !important;
+  padding: 10px 8px !important;
 }
 
 .swagger-ui .response-col_status {
   font-family: var(--font-mono) !important;
   font-weight: 700 !important;
-  font-size: 13px !important;
+  font-size: 14px !important;
+  color: var(--text-title) !important;
 }
 
-.swagger-ui .response-col_status .response-undocumented {
-  color: var(--text-muted) !important;
+.swagger-ui .response-col_description {
+  color: var(--text-body) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
 }
 
 /* Models / Schemas Block at Bottom */
@@ -625,11 +703,11 @@ html, body {
 .swagger-ui .model-title {
   font-family: var(--font-display) !important;
   font-size: 14px !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   color: var(--text-title) !important;
 }
 
-/* Smooth Scrollbars */
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
