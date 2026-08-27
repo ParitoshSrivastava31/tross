@@ -1135,3 +1135,252 @@ body {
 .hidden {
   display: none !important;
 }
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
+
+@media (max-width: 868px) {
+  .stage {
+    padding: 32px 18px 60px;
+  }
+  
+  .hero-heading {
+    font-size: 2.2rem;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .drawer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Navigation */
+  .nav-container {
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .brand-title {
+    font-size: 13.5px;
+  }
+  
+  .nav-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  
+  .nav-btn {
+    padding: 5px 10px;
+    font-size: 0.74rem;
+  }
+  
+  .status-indicator-box {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+  
+  /* Hero */
+  .stage {
+    padding: 20px 12px 50px;
+  }
+  
+  .hero-stage {
+    margin-bottom: 24px;
+  }
+  
+  .badge-capsule {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+  
+  .hero-heading {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  
+  .hero-desc {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  
+  /* Query Input Housing */
+  .query-dock {
+    padding: 10px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+  }
+  
+  .input-housing {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+  
+  .input-housing input {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+  
+  .input-right-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
+  .key-tag {
+    display: none;
+  }
+  
+  .btn-action-dark {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 16px;
+    font-size: 0.82rem;
+  }
+  
+  /* Presets Strip */
+  .presets-deck {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 4px 2px;
+  }
+  
+  .presets-row {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  
+  .presets-row::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .preset-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  
+  /* Results Deck & Segmented Controls */
+  .deck-segmented-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+  
+  .segmented-pills {
+    width: 100%;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+  
+  .segment-pill {
+    flex: 1;
+    justify-content: center;
+    padding: 7px 8px;
+    font-size: 0.74rem;
+  }
+  
+  .deck-telemetry {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  /* Identity Card Header */
+  .card-cover-art {
+    height: 95px;
+  }
+  
+  .card-identity-strip {
+    flex-direction: column;
+    padding: 0 16px 16px;
+    gap: 12px;
+  }
+  
+  .avatar-ring {
+    margin-top: -36px;
+  }
+  
+  .avatar-ring img {
+    width: 72px;
+    height: 72px;
+  }
+  
+  .card-title-name {
+    font-size: 1.25rem;
+  }
+  
+  .card-headline-text {
+    font-size: 0.84rem;
+  }
+  
+  .meta-chips-row {
+    gap: 8px;
+  }
+  
+  .meta-item {
+    font-size: 0.74rem;
+  }
+  
+  .card-section-box {
+    padding: 16px 16px;
+  }
+  
+  /* Metrics Grid */
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .metric-val {
+    font-size: 1.15rem;
+  }
+  
+  /* Batch Scraper View */
+  .batch-actions-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .batch-actions-strip .btn-action-dark,
+  .batch-actions-strip .btn-action-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* JSON Code Box */
+  .json-code-box {
+    font-size: 0.74rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-heading {
+    font-size: 1.55rem;
+  }
+  
+  .card-title-name {
+    font-size: 1.15rem;
+  }
+  
+  .segment-pill span {
+    font-size: 0.72rem;
+  }
+}

@@ -753,6 +753,207 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS FOR SWAGGER UI
+   ========================================================================== */
+
+@media (max-width: 868px) {
+  .swagger-ui {
+    padding: 24px 16px 60px 16px !important;
+  }
+  
+  .swagger-ui .info {
+    padding: 24px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Sticky Navigation */
+  .tross-custom-nav {
+    padding: 10px 14px;
+  }
+  
+  .tross-nav-container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tross-nav-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  
+  .tross-nav-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+  
+  .tross-status-box {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  
+  /* Swagger Root Canvas */
+  .swagger-ui {
+    padding: 16px 10px 50px 10px !important;
+  }
+  
+  /* Info Card */
+  .swagger-ui .info {
+    padding: 18px 14px !important;
+    border-radius: 12px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .swagger-ui .info .title {
+    font-size: 21px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 6px !important;
+  }
+  
+  .swagger-ui .info p,
+  .swagger-ui .info .description,
+  .swagger-ui .info .description p {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Scheme & Server Select */
+  .swagger-ui .scheme-container {
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+    margin-bottom: 18px !important;
+  }
+  
+  .swagger-ui .servers > label select {
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+  
+  /* Filter Container */
+  .swagger-ui .filter-container input,
+  .swagger-ui .filter-container .operation-filter-input {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+  }
+  
+  /* Tag Sections */
+  .swagger-ui .opblock-tag {
+    font-size: 17px !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 10px 0 !important;
+  }
+  
+  .swagger-ui .opblock-tag small,
+  .swagger-ui .opblock-tag small *,
+  .swagger-ui .opblock-tag .markdown,
+  .swagger-ui .opblock-tag .markdown p {
+    margin-left: 0 !important;
+    width: 100% !important;
+    font-size: 13px !important;
+  }
+  
+  /* Opblock Summary */
+  .swagger-ui .opblock .opblock-summary {
+    padding: 10px 12px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  
+  .swagger-ui .opblock .opblock-summary-method {
+    min-width: 58px !important;
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+  }
+  
+  .swagger-ui .opblock .opblock-summary-path {
+    font-size: 12.5px !important;
+    word-break: break-all !important;
+  }
+  
+  .swagger-ui .opblock .opblock-summary-description {
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+  
+  /* Opblock Body */
+  .swagger-ui .opblock-body {
+    padding: 14px 10px !important;
+  }
+  
+  .swagger-ui .opblock-section-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
+  }
+  
+  .swagger-ui .btn.try-out__btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  
+  /* Parameters Table */
+  .swagger-ui table.parameters {
+    display: block !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .swagger-ui .parameters-col_name {
+    min-width: 100px !important;
+  }
+  
+  .swagger-ui .parameters-col_description {
+    min-width: 160px !important;
+  }
+  
+  /* Inputs */
+  .swagger-ui input[type="text"],
+  .swagger-ui textarea,
+  .swagger-ui select {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 12px !important;
+    padding: 8px 10px !important;
+  }
+  
+  /* Execute Buttons */
+  .swagger-ui .btn.execute {
+    width: 100% !important;
+    padding: 10px 16px !important;
+  }
+  
+  .swagger-ui .btn.btn-clear,
+  .swagger-ui .btn.cancel {
+    width: 100% !important;
+    margin-top: 6px !important;
+  }
+  
+  .swagger-ui .execute-wrapper {
+    padding: 10px 0 !important;
+  }
+  
+  /* Code & Responses */
+  .swagger-ui .highlight-code,
+  .swagger-ui pre.microlight,
+  .swagger-ui .curl-command,
+  .swagger-ui .responses-inner pre {
+    font-size: 11.5px !important;
+    padding: 10px !important;
+  }
+  
+  .swagger-ui .responses-table {
+    display: block !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+  }
+}
 `;
 
 export const SWAGGER_CUSTOM_JS = `
