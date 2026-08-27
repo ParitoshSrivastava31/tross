@@ -16,17 +16,28 @@ export const SWAGGER_CUSTOM_CSS = `
   --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
   font-family: var(--font-display) !important;
-  background-color: var(--bg-page) !important;
-  color: var(--text-body) !important;
+  background-color: #f8fafc !important;
+  background: #f8fafc !important;
+  color: #334155 !important;
   -webkit-font-smoothing: antialiased;
   background-image: 
     radial-gradient(at 50% 0%, rgba(0, 113, 227, 0.03) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.02) 0px, transparent 50%) !important;
   background-attachment: fixed !important;
+  min-height: 100vh !important;
+}
+
+#swagger-ui,
+.swagger-ui,
+.swagger-ui .wrapper,
+.swagger-ui .swagger-container {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #334155 !important;
 }
 
 /* Custom Navigation Bar */
@@ -73,6 +84,7 @@ body {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: -0.01em;
+  color: var(--text-title);
 }
 
 .tross-brand-sub {
@@ -265,6 +277,7 @@ body {
 /* Filter Input Box */
 .swagger-ui .filter-container {
   margin-bottom: 24px !important;
+  padding: 0 !important;
 }
 
 .swagger-ui .filter-container input {
@@ -277,6 +290,8 @@ body {
   color: var(--text-title) !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.15s ease !important;
+  width: 100% !important;
+  max-width: 400px !important;
 }
 
 .swagger-ui .filter-container input:focus {
@@ -301,12 +316,20 @@ body {
   margin-bottom: 14px !important;
 }
 
+.swagger-ui .opblock-tag:hover {
+  background: transparent !important;
+}
+
 .swagger-ui .opblock-tag small {
   font-family: var(--font-display) !important;
   font-size: 13px !important;
   font-weight: 400 !important;
   color: var(--text-muted) !important;
   margin-left: 10px !important;
+}
+
+.swagger-ui .opblock-tag svg {
+  fill: var(--text-title) !important;
 }
 
 /* Opblocks (Endpoints) */
@@ -329,6 +352,7 @@ body {
   padding: 12px 18px !important;
   display: flex !important;
   align-items: center !important;
+  background: #ffffff !important;
 }
 
 /* Method Badges */

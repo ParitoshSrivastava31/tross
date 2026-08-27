@@ -91,10 +91,6 @@ export async function buildServer(): Promise<FastifyInstance> {
       deepLinking: true,
       displayRequestDuration: true,
       filter: true,
-      syntaxHighlight: {
-        activate: true,
-        theme: 'tomorrow-night',
-      },
     },
     theme: {
       title: 'LinkedIn Profile API — OpenAPI Specs & Playground',
