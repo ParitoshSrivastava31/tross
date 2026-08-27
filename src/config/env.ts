@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 dotenv.config();
 
-const envSchema = z.object({
+export const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().default(3000),
   HOST: z.string().default('0.0.0.0'),
@@ -18,11 +18,14 @@ const envSchema = z.object({
   CORS_ORIGIN: z.string().default('*'),
 });
 
-const parsedEnv = envSchema.safeParse(process.env);
+export type Env = z.infer<typeof envSchema>;
 
-if (!parsedEnv.success) {
-  console.error('❌ Invalid environment variables:', parsedEnv.error.format());
-  process.exit(1);
+let parsedData: Env;
+try {
+  parsedData = envSchema.parse(process.env);
+} catch (error) {
+  console.error('❌ Invalid environment variables:', error);
+  parsedData = envSchema.parse({});
 }
 
-export const env = parsedEnv.data;
+export const env: Env = parsedData;

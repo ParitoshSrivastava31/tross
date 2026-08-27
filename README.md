@@ -76,8 +76,8 @@ Integrates an automated email derivation and discovery engine (similar to Dropco
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/your-username/linkedin-profile-api.git
-cd linkedin-profile-api
+git clone https://github.com/ParitoshSrivastava31/tross.git
+cd tross
 npm install
 ```
 
