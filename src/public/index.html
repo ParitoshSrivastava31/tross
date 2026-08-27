@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Profile API & Scraper Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 11V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 8V8.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 16V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 16V13C16 11.8954 15.1046 11 14 11C13.5 11 12.8 11.3 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">LinkedIn Profile API <span class="badge live-badge">v1.0 Live</span></h1>
+          <p class="brand-sub">Reverse-Engineered Voyager & Enrichment Extraction Engine</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="/docs" target="_blank" class="nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Swagger Docs
+        </a>
+        <a href="/api/v1/health" target="_blank" class="status-indicator">
+          <span class="pulse-dot"></span>
+          <span>API Healthy</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    <!-- Hero / Navigation Tabs -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="single-tab">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Single Profile Extractor
+      </button>
+      <button class="tab-btn" data-tab="batch-tab">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Batch Scraper & CSV Exporter
+      </button>
+    </div>
+
+    <!-- TAB 1: SINGLE PROFILE EXTRACTOR -->
+    <section id="single-tab" class="tab-pane active">
+      <div class="card search-card">
+        <div class="search-form">
+          <div class="input-wrapper">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="profileUrlInput" placeholder="https://www.linkedin.com/in/satyanadella" value="https://www.linkedin.com/in/satyanadella" spellcheck="false" autocomplete="off" />
+          </div>
+          <button id="extractBtn" class="btn btn-primary">
+            <span class="btn-text">Extract Profile</span>
+            <span class="btn-spinner hidden"></span>
+          </button>
+        </div>
+
+        <!-- Quick Samples -->
+        <div class="quick-samples">
+          <span class="sample-label">Quick Test Profiles:</span>
+          <button class="sample-pill" data-url="https://www.linkedin.com/in/satyanadella">Satya Nadella (Microsoft)</button>
+          <button class="sample-pill" data-url="https://www.linkedin.com/in/williamhgates">Bill Gates (Gates Foundation)</button>
+          <button class="sample-pill" data-url="https://www.linkedin.com/in/reidhoffman">Reid Hoffman (Greylock)</button>
+          <button class="sample-pill" data-url="https://www.linkedin.com/in/alex-rivers-lead">Alex Rivers (Custom Demo)</button>
+        </div>
+
+        <!-- Advanced Settings Accordion -->
+        <div class="settings-toggle-wrapper">
+          <button id="toggleSettingsBtn" class="settings-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Advanced Backend Options (Session Cookies & Email Discovery)</span>
+          </button>
+          <div id="settingsPanel" class="settings-panel hidden">
+            <div class="settings-grid">
+              <div class="setting-item">
+                <label for="liAtInput">LinkedIn Session Cookie (<code>li_at</code>)</label>
+                <input type="password" id="liAtInput" placeholder="AQEDAT..." />
+                <span class="hint">Optional. Uses backend env or sandbox if empty.</span>
+              </div>
+              <div class="setting-item">
+                <label for="jsessionIdInput">LinkedIn CSRF Token (<code>JSESSIONID</code>)</label>
+                <input type="text" id="jsessionIdInput" placeholder="ajax:..." />
+              </div>
+              <div class="setting-item checkbox-item">
+                <label>
+                  <input type="checkbox" id="enrichEmailCheck" checked />
+                  <span>Enable Email Discovery & Pattern Enrichment</span>
+                </label>
+              </div>
+              <div class="setting-item checkbox-item">
+                <label>
+                  <input type="checkbox" id="sandboxFallbackCheck" checked />
+                  <span>Enable High-Fidelity Sandbox Fallback</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Loading State -->
+      <div id="loadingState" class="loading-container hidden">
+        <div class="loader-ring"></div>
+        <p class="loader-text">Extracting profile metadata, experience timeline, skills, and contact data...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="errorState" class="alert alert-error hidden">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div id="errorMessage">An error occurred while extracting the profile.</div>
+      </div>
+
+      <!-- Results Grid -->
+      <div id="resultsWrapper" class="results-layout">
+        <!-- Visual Profile Card -->
+        <div class="profile-card">
+          <div class="profile-banner" id="cardBanner"></div>
+          <div class="profile-header-content">
+            <div class="avatar-wrapper">
+              <img id="cardAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Avatar" />
+            </div>
+            <div class="profile-meta-tags">
+              <span id="cardSourceBadge" class="badge badge-source">Voyager API</span>
+              <span id="cardFollowersBadge" class="badge badge-stat">11.2M Followers</span>
+            </div>
+            <h2 id="cardFullName" class="profile-name">Satya Nadella</h2>
+            <p id="cardHeadline" class="profile-headline">Chairman and CEO at Microsoft</p>
+            <div class="profile-subinfo">
+              <span id="cardLocation" class="info-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Greater Seattle Area, USA
+              </span>
+              <span id="cardCompany" class="info-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                Microsoft
+              </span>
+            </div>
+          </div>
+
+          <!-- Discovered Emails & Contact -->
+          <div class="card-section">
+            <h3 class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Enriched Contact & Professional Emails
+            </h3>
+            <div id="cardEmails" class="email-chips"></div>
+          </div>
+
+          <!-- About / Summary -->
+          <div class="card-section">
+            <h3 class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>
+              About
+            </h3>
+            <p id="cardAbout" class="profile-about-text"></p>
+          </div>
+
+          <!-- Experience Timeline -->
+          <div class="card-section">
+            <h3 class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              Work Experience History
+            </h3>
+            <div id="cardExperience" class="timeline-list"></div>
+          </div>
+
+          <!-- Education -->
+          <div class="card-section">
+            <h3 class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              Education
+            </h3>
+            <div id="cardEducation" class="education-list"></div>
+          </div>
+
+          <!-- Skills & Endorsements -->
+          <div class="card-section">
+            <h3 class="section-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Skills & Endorsements
+            </h3>
+            <div id="cardSkills" class="skills-wrap"></div>
+          </div>
+        </div>
+
+        <!-- Raw JSON Inspector -->
+        <div class="json-inspector">
+          <div class="inspector-header">
+            <div class="inspector-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Structured JSON Response (44+ Fields)
+            </div>
+            <div class="inspector-actions">
+              <button id="copyJsonBtn" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy JSON
+              </button>
+              <button id="downloadJsonBtn" class="btn btn-secondary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download JSON
+              </button>
+            </div>
+          </div>
+          <pre id="jsonViewer" class="json-pre"><code>// Extracted JSON output will render here</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: BATCH SCRAPER & CSV EXPORT -->
+    <section id="batch-tab" class="tab-pane">
+      <div class="card batch-card">
+        <h2 class="card-heading">Batch Profile Scraper & CRM Export</h2>
+        <p class="card-description">
+          Submit multiple LinkedIn profile URLs to extract normalized data and download a ready-to-use CSV export compatible with Google Sheets, Excel, and HubSpot.
+        </p>
+
+        <div class="batch-input-group">
+          <label for="batchUrlsInput">LinkedIn Profile URLs (One per line, max 50):</label>
+          <textarea id="batchUrlsInput" rows="6" placeholder="https://www.linkedin.com/in/satyanadella&#10;https://www.linkedin.com/in/williamhgates&#10;https://www.linkedin.com/in/reidhoffman">https://www.linkedin.com/in/satyanadella
+https://www.linkedin.com/in/williamhgates
+https://www.linkedin.com/in/reidhoffman</textarea>
+        </div>
+
+        <div class="batch-actions">
+          <button id="runBatchBtn" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Process Batch
+          </button>
+          <button id="exportCsvBtn" class="btn btn-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export to CSV (PhantomBuster Format)
+          </button>
+        </div>
+
+        <!-- Batch Metrics -->
+        <div id="batchMetrics" class="metrics-grid hidden">
+          <div class="metric-card">
+            <div class="metric-value" id="metricTotal">0</div>
+            <div class="metric-label">Total Profiles</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value text-success" id="metricSuccess">0</div>
+            <div class="metric-label">Successful</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value text-error" id="metricFailed">0</div>
+            <div class="metric-label">Failed</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" id="metricLatency">0ms</div>
+            <div class="metric-label">Total Time</div>
+          </div>
+        </div>
+
+        <!-- Batch Results Table -->
+        <div id="batchTableWrapper" class="table-responsive hidden">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Current Title</th>
+                <th>Company</th>
+                <th>Professional Email</th>
+                <th>Location</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="batchTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>LinkedIn Profile API & Scraper Engine • Built with Node.js 22, Fastify, TypeScript, and Zod</p>
+      <div class="footer-links">
+        <a href="/docs">OpenAPI Spec</a>
+        <span>•</span>
+        <a href="/api/v1/health">API Status</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
