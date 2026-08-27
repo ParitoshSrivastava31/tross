@@ -9,10 +9,11 @@ COPY package*.json tsconfig.json ./
 # Install all dependencies (including devDependencies for build)
 RUN npm ci
 
-# Copy source code
+# Copy source code and scripts
 COPY src/ ./src/
+COPY scripts/ ./scripts/
 
-# Compile TypeScript to dist/
+# Compile TypeScript to dist/ and copy assets
 RUN npm run build
 
 # Production Runner Stage
