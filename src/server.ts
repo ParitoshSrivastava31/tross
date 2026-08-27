@@ -5,6 +5,7 @@ import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
@@ -93,11 +94,20 @@ export async function buildServer(): Promise<FastifyInstance> {
   });
 
   // 5. Static Assets for Web Playground
-  const publicPath = path.join(__dirname, 'public');
+  const candidatePaths = [
+    path.join(__dirname, 'public'),
+    path.join(__dirname, '../src/public'),
+    path.join(__dirname, '../public'),
+    path.join(process.cwd(), 'src/public'),
+    path.join(process.cwd(), 'dist/public'),
+  ];
+  const publicPath = candidatePaths.find((p) => fs.existsSync(p)) || candidatePaths[0];
+
   await app.register(fastifyStatic, {
     root: publicPath,
     prefix: '/',
     decorateReply: false,
+    index: ['index.html'],
   });
 
   // 6. Global Error Handler
